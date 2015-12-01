@@ -1,0 +1,33 @@
+<html>
+ <head>
+  <meta name="decorator" content="bitbucket.repository.general">
+  <meta name="projectKey" content="$repository.project.key">
+  <meta name="repositorySlug" content="$repository.slug">
+  <meta name="activeTab" content="network-plugin-tab">
+  <title>$repository.slug/Changelog</title>
+  $webResourceManager.requireResource("se.bjurr.changelog.git-changelog-for-bitbucket:repository-resources")
+  $webResourceManager.requireResource("com.atlassian.auiplugin:aui-dropdown2")
+ </head>
+ <body>
+  <header class="aui-page-header">
+   <div class="aui-page-header-inner">
+    <div class="aui-page-header-actions">
+
+     <input type="hidden" id="changelog-project" value="$repository.project.key"/>
+     <input type="hidden" id="changelog-repository" value="$repository.slug"/>
+
+     <select class="select" id="changelog-from" name="changelog-from">
+      <option value="0000000000000000000000000000000000000000">First commit</option>
+     </select>
+
+     <select class="select" id="changelog-to" name="changelog-to">
+      <option value="master">Master</option>
+     </select>
+
+    </div>
+   </div>
+  </header>
+  <section id="changelog-content">
+  </section>
+ </body>
+</html>

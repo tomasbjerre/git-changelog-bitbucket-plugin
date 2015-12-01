@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Git Changelog for Bitbucket Admin</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("se.bjurr.changelog.git-changelog-for-bitbucket:admin-resources")
+  </head>
+  <body>
+    <div>
+     <form class="config-area">
+        <div>
+          <fieldset>
+            <legend>Template</legend>
+            <textarea name="post_content" rows="30" cols="60"></textarea>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <input type="button" name="save" value="Save"/>
+          </fieldset>
+        </div>
+     </form>
+    </div>
+  </body>
+</html>
