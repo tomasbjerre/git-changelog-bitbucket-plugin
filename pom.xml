@@ -91,13 +91,18 @@
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
             <artifactId>git-changelog-lib</artifactId>
-            <version>1.16</version>
+            <version>1.17</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.applinks</groupId>
+            <artifactId>applinks-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.templaterenderer</groupId>

@@ -1,6 +1,18 @@
 # Git Changelog Bitbucket Plugin [![Build Status](https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin.svg?branch=master)](https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin)
 
-Generate changelog or releasenotes in Atlassian Bitbucket Server using [Git Changelog](https://github.com/tomasbjerre/git-changelog-lib).
+Generate changelog or releasenotes in Atlassian Bitbucket Server using [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
+
+## Variables
+The changelog is available in the context of the template. These variables are documented in [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
+
+There are also some extended variables available in this Bitbucket plugin.
+
+ * *repositoryName* Name of repository
+ * *repositorySlug* Name of repository used in URL:s of Bitbucket
+ * *projectName* Name of project
+ * *projectKey* Name of project used in URL:s of Bitbucket
+ * *jiraUrl* URL pointing to Jira, if you have one configured in Bitbucket
+ * *bitbucketUrl* URL pointing at your Bitbucket server
 
 ## Developer instructions
 Prerequisites:

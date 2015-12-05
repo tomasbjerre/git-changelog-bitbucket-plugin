@@ -1,7 +1,7 @@
-<h1> Git Changelog changelog </h1>
+<h1> {{projectName}} changelog </h1>
 
 <p>
-Changelog of Git Changelog.
+Changelog of {{projectName}}.
 </p>
 
 {{#tags}}
@@ -21,7 +21,7 @@ Changelog of Git Changelog.
 
 
    {{#commits}}
-<a href="/bitbucket/projects/PROJECT_1/repos/rep_1/commits/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
+<a href="{{bitbucketUrl}}/bitbucket/projects/{{projectKey}}/repos/{{repositorySlug}}/commits/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
 <p>
 {{{message}}}
 </p>

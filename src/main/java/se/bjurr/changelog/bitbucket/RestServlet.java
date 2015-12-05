@@ -38,10 +38,15 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import se.bjurr.changelog.bitbucket.rest.dto.ChangelogDTO;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
+import com.atlassian.applinks.api.ApplicationLinkService;
+import com.atlassian.applinks.api.application.bitbucket.BitbucketApplicationType;
+import com.atlassian.applinks.api.application.jira.JiraApplicationType;
 import com.atlassian.bitbucket.repository.Repository;
 import com.atlassian.bitbucket.repository.RepositoryService;
 import com.atlassian.bitbucket.server.ApplicationPropertiesService;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,12 +58,14 @@ public class RestServlet {
  private final RepositoryService repositoryService;
  private final ApplicationPropertiesService applicationPropertiesService;
  private final TransactionTemplate transactionTemplate;
+ private final ApplicationLinkService applicationLinkService;
 
  public RestServlet(RepositoryService repositoryService, ApplicationPropertiesService applicationPropertiesService,
-   TransactionTemplate transactionTemplate) {
+   TransactionTemplate transactionTemplate, ApplicationLinkService applicationLinkService) {
   this.repositoryService = repositoryService;
   this.applicationPropertiesService = applicationPropertiesService;
   this.transactionTemplate = transactionTemplate;
+  this.applicationLinkService = applicationLinkService;
  }
 
  @GET
@@ -179,10 +186,25 @@ public class RestServlet {
  }
 
  private GitChangelogApi getGitChangelogApiBuilder(Repository repo) throws IOException {
+  Builder<String, Object> builder = ImmutableMap.<String, Object> builder() //
+    .put("repositoryName", repo.getName()) //
+    .put("repositorySlug", repo.getSlug()) //
+    .put("projectName", repo.getProject().getName()) //
+    .put("projectKey", repo.getProject().getKey());
+  if (applicationLinkService.getPrimaryApplicationLink(JiraApplicationType.class) != null) {
+   builder //
+     .put("jiraUrl", applicationLinkService.getPrimaryApplicationLink(JiraApplicationType.class));
+  }
+  if (applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class) != null) {
+   builder //
+     .put("bitbucketUrl", applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class));
+  }
   File repositoryDir = applicationPropertiesService.getRepositoryDir(repo);
+  Map<String, Object> extendedVariables = builder.build();
   return gitChangelogApiBuilder() //
     .withTemplateContent(Resources.toString(getResource("static/changelog_html.mustache"), UTF_8)) //
-    .withFromRepo(repositoryDir.getAbsolutePath());
+    .withFromRepo(repositoryDir.getAbsolutePath()) //
+    .withExtendedVariables(extendedVariables);
  }
 
  private ChangelogDTO getChangelog(final Repository repo, GitChangelogApi changelogBuilder) throws IOException {
