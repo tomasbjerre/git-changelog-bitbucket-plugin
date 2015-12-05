@@ -1,0 +1,21 @@
+{
+ "fromRepo": ".",
+ "fromCommit": "0000000000000000000000000000000000000000",
+ "toRef": "refs/heads/master",
+ 
+ "ignoreCommitsIfMessageMatches": "^\\[maven-release-plugin\\].*|^\\[Gradle Release Plugin\\].*|^Merge.*",
+ "readableTagName": "([0-9\\.]+)",
+ "dateFormat": "YYYY-MM-dd HH:mm:ss",
+ "untaggedName": "Next release",
+ "noIssueName": "Other changes",
+ "timeZone": "UTC",
+ "removeIssueFromMessage": "true",
+
+ "gitHubApi": "https://api.github.com/repos/tomasbjerre/git-changelog-lib",
+ "gitHubIssuePattern": "#([0-9]+)",
+
+ "customIssues": [
+  { "name": "Features", "pattern": "#feature" },
+  { "name": "Bugs", "pattern": "#bug" }
+ ]
+}

@@ -2,6 +2,9 @@
 
 Generates a changelog, or releasenotes, in Atlassian Bitbucket Server using [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
 
+## Changelog page
+The plugin adds a page on repository level where the user can select *from* and *to* branch to generate a changelog.
+
 There are some screenshots [here](https://github.com/tomasbjerre/git-changelog-lib/tree/screenshots/sandbox).
 
 ## REST API
@@ -55,7 +58,10 @@ mvn bitbucket:debug
 ```
 
 Make a release [(detailed instructions)](https://developer.atlassian.com/docs/common-coding-tasks/development-cycle/packaging-and-releasing-your-plugin):
-```
-mvn release:prepare
-mvn release:perform
-```
+
+ * `mvn release:prepare release:perform`
+ * Browse to GitHub page
+  * Upload artifact
+  * Write releasenotes
+ * Go to Marketplace
+  * Create a release

@@ -13,8 +13,8 @@
     <description>This is the Git Changelog for Atlassian Bitbucket.</description>
     <packaging>atlassian-plugin</packaging>
     <scm>
-        <developerConnection>scm:git:git@github.com:tomasbjerre/git-changelog-publisher-plugin.git</developerConnection>
-        <url>https://github.com/tomasbjerre/git-changelog-publisher-plugin</url>
+        <developerConnection>scm:git:git@github.com:tomasbjerre/git-changelog-bitbucket-plugin.git</developerConnection>
+        <url>https://github.com/tomasbjerre/git-changelog-bitbucket-plugin</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
@@ -177,6 +177,26 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.17</version>
+            </plugin>
+            <plugin>
+                <groupId>se.bjurr.gitchangelog</groupId>
+                <artifactId>git-changelog-maven-plugin</artifactId>
+                <version>1.9</version>
+                <executions>
+                    <execution>
+                        <id>GenerateGitChangelog</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>git-changelog</goal>
+                        </goals>
+                        <configuration>
+                            <toRef>refs/heads/master</toRef>
+                            <templateFile>changelog.mustache</templateFile>
+                            <settingsFile>changelog.json</settingsFile>
+                            <filePath>CHANGELOG.md</filePath>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
         <resources>
