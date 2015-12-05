@@ -9,13 +9,67 @@
      <form class="config-area">
         <div>
           <fieldset>
+            <legend>Date</legend>
+            <label>Format<input type="text" name="dateFormat"><br/></label>
+            <div class="error dateFormat"></div>
+            <div class="description">
+             Using <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html" target="_blank">Simple Date Format</a>.
+            </div>
+            <label>Time zone<input type="text" name="timeZone"></label>
+            <div class="error timeZone"></div>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <legend>Commits</legend>
+            <div class="description">
+             Ignore commits if regular expression matches message.
+            </div>
+            <label>Pattern <input type="text" name="ignoreCommitsIfMessageMatches"><br/></label>
+            <div class="error ignoreCommitsIfMessageMatches"></div>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <legend>Tags</legend>
+            <div class="description">
+             Commits that are not included in any tag will be included in this "virtual" tag.
+            </div>
+            <label>Name <input type="text" name="untaggedName"></label>
+            <div class="error untaggedName"></div>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <legend>Issues</legend>
+            <div class="description">
+             Commits do not contain any issue will be grouped in this "virtual" issue.
+            </div>
+            <label>Name <input type="text" name="noIssueName"></label>
+            <div class="error noIssueName"></div>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
             <legend>Template</legend>
-            <textarea name="post_content" rows="30" cols="60"></textarea>
+            <div class="description">
+             You can use variables documented <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">here</a>. The context of this plugin has been extended with these variables.
+             <ul>
+              <li><b>{{repositoryName}}</b> Name of repository</li>
+              <li><b>{{repositorySlug}}</b> Name of repository used in URL:s of Bitbucket</li>
+              <li><b>{{projectName}}</b> Name of project</li>
+              <li><b>{{projectKey}}</b> Name of project used in URL:s of Bitbucket</li> 
+              <li><b>{{jiraUrl}}</b> URL pointing to Jira, if you have one configured in Bitbucket</li>
+              <li><b>{{bitbucketUrl}}</b> URL pointing at your Bitbucket server</li>        
+             </ul>
+            </div>
+            <textarea name="template" rows="30" cols="60"></textarea>
           </fieldset>
         </div>
         <div>
           <fieldset>
             <input type="button" name="save" value="Save"/>
+            <span class="post"></span>
           </fieldset>
         </div>
      </form>

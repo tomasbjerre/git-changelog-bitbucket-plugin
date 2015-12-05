@@ -1,6 +1,19 @@
 # Git Changelog Bitbucket Plugin [![Build Status](https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin.svg?branch=master)](https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin)
 
-Generate changelog or releasenotes in Atlassian Bitbucket Server using [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
+Generates a changelog, or releasenotes, in Atlassian Bitbucket Server using [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
+
+There are some screenshots [here](https://github.com/tomasbjerre/git-changelog-lib/tree/screenshots/sandbox).
+
+## REST API
+The plugin exposes the changelog as a REST API, available at */bitbucket/rest/changelog/1.0/*
+
+```
+/{project}/{repository} - First commit to master
+/{project}/{repository}/fromref/{fromRef}/toref/{toRef}
+/{project}/{repository}/fromref/{fromRef}/tocommit/{toCommit}
+/{project}/{repository}/fromcommit/{fromCommit}/toref/{toRef}
+/{project}/{repository}/fromcommit/{fromCommit}/tocommit/{toCommit}
+```
 
 ## Variables
 The changelog is available in the context of the template. These variables are documented in [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).

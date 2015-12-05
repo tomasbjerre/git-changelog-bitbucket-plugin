@@ -1,6 +1,5 @@
 package se.bjurr.changelog.bitbucket;
 
-import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Predicates.equalTo;
 import static com.google.common.base.Predicates.not;
@@ -8,8 +7,11 @@ import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.transform;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Ordering.usingToString;
-import static com.google.common.io.Resources.getResource;
+import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.STORAGE_KEY;
+import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.fromJson;
+import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.getValidatedSettings;
 import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
+import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_JIRA_ISSUE_PATTEN;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,8 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
+import se.bjurr.changelog.bitbucket.admin.settings.ChangelogSettings;
+import se.bjurr.changelog.bitbucket.admin.settings.ValidationException;
 import se.bjurr.changelog.bitbucket.rest.dto.ChangelogDTO;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
@@ -30,17 +34,18 @@ import com.atlassian.applinks.api.application.jira.JiraApplicationType;
 import com.atlassian.bitbucket.repository.Repository;
 import com.atlassian.bitbucket.repository.RepositoryService;
 import com.atlassian.bitbucket.server.ApplicationPropertiesService;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
-import com.google.common.io.Resources;
 
 public final class RestUtils {
  public RestUtils() {
  }
 
- static GitChangelogApi getGitChangelogApiBuilder(ApplicationLinkService applicationLinkService,
-   ApplicationPropertiesService applicationPropertiesService, Repository repo) throws IOException {
+ static GitChangelogApi getGitChangelogApiBuilder(PluginSettingsFactory pluginSettingsFactory,
+   ApplicationLinkService applicationLinkService, ApplicationPropertiesService applicationPropertiesService,
+   Repository repo) throws IOException, ValidationException {
   Builder<String, Object> builder = ImmutableMap.<String, Object> builder() //
     .put("repositoryName", repo.getName()) //
     .put("repositorySlug", repo.getSlug()) //
@@ -54,12 +59,20 @@ public final class RestUtils {
    builder //
      .put("bitbucketUrl", applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class));
   }
+  ChangelogSettings settings = getValidatedSettings(fromJson(pluginSettingsFactory.createGlobalSettings().get(
+    STORAGE_KEY)));
   File repositoryDir = applicationPropertiesService.getRepositoryDir(repo);
   Map<String, Object> extendedVariables = builder.build();
   return gitChangelogApiBuilder() //
-    .withTemplateContent(Resources.toString(getResource("static/changelog_html.mustache"), UTF_8)) //
     .withFromRepo(repositoryDir.getAbsolutePath()) //
-    .withExtendedVariables(extendedVariables);
+    .withExtendedVariables(extendedVariables) //
+    .withDateFormat(settings.getDateFormat()) //
+    .withJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN) //
+    .withIgnoreCommitsWithMesssage(settings.getIgnoreCommitsIfMessageMatches()) //
+    .withNoIssueName(settings.getNoIssueName()) //
+    .withTemplateContent(settings.getTemplate()) //
+    .withTimeZone(settings.getTimeZone()) //
+    .withUntaggedName(settings.getUntaggedName());
  }
 
  static ChangelogDTO getChangelog(ApplicationPropertiesService applicationPropertiesService, final Repository repo,

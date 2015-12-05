@@ -21,6 +21,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import se.bjurr.changelog.bitbucket.admin.settings.ValidationException;
 import se.bjurr.changelog.bitbucket.rest.dto.ChangelogDTO;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
@@ -28,25 +29,29 @@ import com.atlassian.applinks.api.ApplicationLinkService;
 import com.atlassian.bitbucket.repository.Repository;
 import com.atlassian.bitbucket.repository.RepositoryService;
 import com.atlassian.bitbucket.server.ApplicationPropertiesService;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Path("/")
-public class RestServlet {
+public class RestResource {
  private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
  private final RepositoryService repositoryService;
  private final ApplicationPropertiesService applicationPropertiesService;
  private final TransactionTemplate transactionTemplate;
  private final ApplicationLinkService applicationLinkService;
+ private final PluginSettingsFactory pluginSettingsFactory;
 
- public RestServlet(RepositoryService repositoryService, ApplicationPropertiesService applicationPropertiesService,
-   TransactionTemplate transactionTemplate, ApplicationLinkService applicationLinkService) {
+ public RestResource(RepositoryService repositoryService, ApplicationPropertiesService applicationPropertiesService,
+   TransactionTemplate transactionTemplate, ApplicationLinkService applicationLinkService,
+   PluginSettingsFactory pluginSettingsFactory) {
   this.repositoryService = repositoryService;
   this.applicationPropertiesService = applicationPropertiesService;
   this.transactionTemplate = transactionTemplate;
   this.applicationLinkService = applicationLinkService;
+  this.pluginSettingsFactory = pluginSettingsFactory;
  }
 
  @GET
@@ -69,12 +74,12 @@ public class RestServlet {
  public Response getFromZeroToMaster(//
    @PathParam("project") String project, //
    @PathParam("repository") String repository) //
-   throws ServletException, IOException {
+   throws ServletException, IOException, ValidationException {
 
   final Repository repo = getRepository(repositoryService, project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(applicationLinkService, applicationPropertiesService,
-    repo) //
+  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
+    applicationPropertiesService, repo) //
     .withFromCommit(ZERO_COMMIT) //
     .withToRef(REF_MASTER);
 
@@ -91,12 +96,12 @@ public class RestServlet {
    @PathParam("repository") String repository,//
    @PathParam("fromRef") String fromRef,//
    @PathParam("toRef") String toRef) //
-   throws ServletException, IOException {
+   throws ServletException, IOException, ValidationException {
 
   final Repository repo = getRepository(repositoryService, project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(applicationLinkService, applicationPropertiesService,
-    repo) //
+  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
+    applicationPropertiesService, repo) //
     .withFromRef(decode(fromRef, UTF_8.name())) //
     .withToRef(decode(toRef, UTF_8.name()));
 
@@ -113,12 +118,12 @@ public class RestServlet {
    @PathParam("repository") String repository,//
    @PathParam("fromCommit") String fromCommit,//
    @PathParam("toRef") String toRef) //
-   throws ServletException, IOException {
+   throws ServletException, IOException, ValidationException {
 
   final Repository repo = getRepository(repositoryService, project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(applicationLinkService, applicationPropertiesService,
-    repo) //
+  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
+    applicationPropertiesService, repo) //
     .withFromCommit(fromCommit) //
     .withToRef(decode(toRef, UTF_8.name()));
 
@@ -135,12 +140,12 @@ public class RestServlet {
    @PathParam("repository") String repository,//
    @PathParam("fromCommit") String fromCommit, //
    @PathParam("toCommit") String toCommit) //
-   throws ServletException, IOException {
+   throws ServletException, IOException, ValidationException {
 
   final Repository repo = getRepository(repositoryService, project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(applicationLinkService, applicationPropertiesService,
-    repo) //
+  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
+    applicationPropertiesService, repo) //
     .withFromCommit(decode(fromCommit, UTF_8.name())) //
     .withToCommit(decode(toCommit, UTF_8.name()));
 
@@ -157,16 +162,16 @@ public class RestServlet {
    @PathParam("repository") String repository,//
    @PathParam("fromRef") String fromRef, //
    @PathParam("toCommit") String toCommit) //
-   throws ServletException, IOException {
+   throws ServletException, IOException, ValidationException {
 
   final Repository repo = getRepository(repositoryService, project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(applicationLinkService, applicationPropertiesService,
-    repo) //
+  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
+    applicationPropertiesService, repo) //
     .withFromRef(fromRef) //
     .withToCommit(decode(toCommit, UTF_8.name()));
 
-  ChangelogDTO changelogDto = RestUtils.getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }

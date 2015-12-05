@@ -11,11 +11,11 @@
         <url>http://bjurr.se/</url>
     </organization>
     <name>git-changelog-for-bitbucket</name>
-    <description>This is the Git Changelog for Atlassian Bitbucket. See https://github.com/tomasbjerre/git-changelog-for-bitbucket for documentation and source code.</description>
+    <description>This is the Git Changelog for Atlassian Bitbucket.</description>
     <packaging>atlassian-plugin</packaging>
     <scm>
-        <developerConnection>scm:git:git@github.com:tomasbjerre/git-changelog-for-bitbucket.git</developerConnection>
-        <url>https://github.com/tomasbjerre/git-changelog-for-bitbucket</url>
+        <developerConnection>scm:git:git@github.com:tomasbjerre/git-changelog-publisher-plugin.git</developerConnection>
+        <url>https://github.com/tomasbjerre/git-changelog-publisher-plugin</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>

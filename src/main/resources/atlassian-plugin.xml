@@ -24,6 +24,8 @@
         <resource type="download" name="admin/admin.css" location="static/admin/admin.css"/> 
     </web-resource>
 
+    <resource type="velocity" name="changelog_html" location="static/changelog_html.mustache"/>
+
     <web-resource name="Repo Level Web Resources" key="repository-resources"> 
         <dependency>com.atlassian.auiplugin:ajs</dependency> 
         <resource type="download" name="repository/repository.js" location="static/repository/repository.js"/> 
