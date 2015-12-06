@@ -2,6 +2,8 @@
 
 Generates a changelog, or releasenotes, in Atlassian Bitbucket Server using [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
 
+Available in [Atlassian Marketplace](https://marketplace.atlassian.com/manage/plugins/se.bjurr.changelog.git-changelog-for-bitbucket/server/overview).
+
 ## Changelog page
 The plugin adds a page on repository level where the user can select *from* and *to* branch to generate a changelog.
 
