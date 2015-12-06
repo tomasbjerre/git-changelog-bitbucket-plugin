@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Git-changelog-bitbucket-plugin : Atlassian Bitbucket plugin for generating changelog, or releasenotes">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Git-changelog-bitbucket-plugin</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tomasbjerre/git-changelog-bitbucket-plugin">View on GitHub</a>
+
+          <h1 id="project_title">Git-changelog-bitbucket-plugin</h1>
+          <h2 id="project_tagline">Atlassian Bitbucket plugin for generating changelog, or releasenotes</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="git-changelog-bitbucket-plugin-" class="anchor" href="#git-changelog-bitbucket-plugin-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git Changelog Bitbucket Plugin <a href="https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin"><img src="https://travis-ci.org/tomasbjerre/git-changelog-bitbucket-plugin.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>Generates a changelog, or releasenotes, in Atlassian Bitbucket Server using <a href="https://github.com/tomasbjerre/git-changelog-lib">Git Changelog Lib</a>.</p>
+
+<h2>
+<a id="changelog-page" class="anchor" href="#changelog-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog page</h2>
+
+<p>The plugin adds a page on repository level where the user can select <em>from</em> and <em>to</em> branch to generate a changelog.</p>
+
+<p>There are some screenshots <a href="https://github.com/tomasbjerre/git-changelog-lib/tree/screenshots/sandbox">here</a>.</p>
+
+<h2>
+<a id="rest-api" class="anchor" href="#rest-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>REST API</h2>
+
+<p>The plugin exposes the changelog as a REST API, available at <em>/bitbucket/rest/changelog/1.0/</em></p>
+
+<pre><code>/{project}/{repository} - First commit to master
+/{project}/{repository}/fromref/{fromRef}/toref/{toRef}
+/{project}/{repository}/fromref/{fromRef}/tocommit/{toCommit}
+/{project}/{repository}/fromcommit/{fromCommit}/toref/{toRef}
+/{project}/{repository}/fromcommit/{fromCommit}/tocommit/{toCommit}
+</code></pre>
+
+<h2>
+<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variables</h2>
+
+<p>The changelog is available in the context of the template. These variables are documented in <a href="https://github.com/tomasbjerre/git-changelog-lib">Git Changelog Lib</a>.</p>
+
+<p>There are also some extended variables available in this Bitbucket plugin.</p>
+
+<ul>
+<li>
+<em>repositoryName</em> Name of repository</li>
+<li>
+<em>repositorySlug</em> Name of repository used in URL:s of Bitbucket</li>
+<li>
+<em>projectName</em> Name of project</li>
+<li>
+<em>projectKey</em> Name of project used in URL:s of Bitbucket</li>
+<li>
+<em>jiraUrl</em> URL pointing to Jira, if you have one configured in Bitbucket</li>
+<li>
+<em>bitbucketUrl</em> URL pointing at your Bitbucket server</li>
+</ul>
+
+<h2>
+<a id="developer-instructions" class="anchor" href="#developer-instructions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developer instructions</h2>
+
+<p>Prerequisites:</p>
+
+<ul>
+<li>Atlas SDK <a href="https://developer.atlassian.com/docs/getting-started/set-up-the-atlassian-plugin-sdk-and-build-a-project">(installation instructions)</a>.</li>
+<li>JDK 1.8 or newer</li>
+</ul>
+
+<p>Generate Eclipse project:</p>
+
+<pre><code>atlas-compile eclipse:eclipse
+</code></pre>
+
+<p>Package the plugin:</p>
+
+<pre><code>atlas-package
+</code></pre>
+
+<p>Run Bitbucket, with the plugin, on localhost:</p>
+
+<pre><code>export MAVEN_OPTS=-Dplugin.resource.directories=`pwd`/src/main/resources
+mvn bitbucket:run
+</code></pre>
+
+<p>You can also debug with:</p>
+
+<pre><code>mvn bitbucket:debug
+</code></pre>
+
+<p>Make a release <a href="https://developer.atlassian.com/docs/common-coding-tasks/development-cycle/packaging-and-releasing-your-plugin">(detailed instructions)</a>:</p>
+
+<pre><code>./dorelease.sh
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Git-changelog-bitbucket-plugin maintained by <a href="https://github.com/tomasbjerre">tomasbjerre</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
