@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.admin.settings;
+package se.bjurr.changelog.bitbucket.settings;
 
 
 public class ChangelogSettingsBuilder {

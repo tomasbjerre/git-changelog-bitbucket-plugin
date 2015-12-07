@@ -1,15 +1,16 @@
-package se.bjurr.changelog.bitbucket.admin.settings;
+package se.bjurr.changelog.bitbucket.settings;
 
 import static org.junit.Assert.assertNotNull;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.timeZone;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.fromJson;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.getValidatedSettings;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.timeZone;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.fromJson;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.getValidatedSettings;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import se.bjurr.changelog.bitbucket.admin.AdminFormValues;
+import se.bjurr.changelog.bitbucket.settings.SettingsStorage;
+import se.bjurr.changelog.bitbucket.settings.ValidationException;
 
 public class SettingsStorageTest {
 

@@ -11,7 +11,7 @@
  "timeZone": "UTC",
  "removeIssueFromMessage": "true",
 
- "gitHubApi": "https://api.github.com/repos/tomasbjerre/git-changelog-lib",
+ "gitHubApi": "https://api.github.com/repos/tomasbjerre/git-changelog-bitbucket-plugin",
  "gitHubIssuePattern": "#([0-9]+)",
 
  "customIssues": [

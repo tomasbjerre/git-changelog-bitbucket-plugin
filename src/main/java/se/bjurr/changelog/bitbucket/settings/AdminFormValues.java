@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.admin;
+package se.bjurr.changelog.bitbucket.settings;
 
 import java.util.ArrayList;
 import java.util.Map;

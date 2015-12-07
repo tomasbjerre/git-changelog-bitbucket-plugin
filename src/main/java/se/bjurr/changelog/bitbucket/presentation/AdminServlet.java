@@ -1,8 +1,8 @@
-package se.bjurr.changelog.bitbucket.admin;
+package se.bjurr.changelog.bitbucket.presentation;
 
 import static com.google.common.base.Throwables.propagate;
 import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
-import static se.bjurr.changelog.bitbucket.admin.ConfigResource.isAdminAllowed;
+import static se.bjurr.changelog.bitbucket.presentation.ConfigResource.isAdminAllowed;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket;
+package se.bjurr.changelog.bitbucket.presentation;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.ImmutableMap.of;

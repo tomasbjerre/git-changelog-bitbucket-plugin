@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket;
+package se.bjurr.changelog.bitbucket.presentation;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static java.net.URLDecoder.decode;
@@ -6,13 +6,12 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.Response.ok;
 import static javax.ws.rs.core.Response.status;
-import static se.bjurr.changelog.bitbucket.RestUtils.getChangelog;
-import static se.bjurr.changelog.bitbucket.RestUtils.getGitChangelogApiBuilder;
-import static se.bjurr.changelog.bitbucket.RestUtils.getRepository;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.REF_MASTER;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.ZERO_COMMIT;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.ws.rs.GET;
@@ -21,15 +20,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import se.bjurr.changelog.bitbucket.admin.settings.ValidationException;
-import se.bjurr.changelog.bitbucket.rest.dto.ChangelogDTO;
-import se.bjurr.gitchangelog.api.GitChangelogApi;
+import se.bjurr.changelog.bitbucket.application.ChangelogRestService;
+import se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService;
+import se.bjurr.changelog.bitbucket.presentation.dto.ChangelogDTO;
+import se.bjurr.changelog.bitbucket.settings.ValidationException;
 
-import com.atlassian.applinks.api.ApplicationLinkService;
 import com.atlassian.bitbucket.repository.Repository;
-import com.atlassian.bitbucket.repository.RepositoryService;
-import com.atlassian.bitbucket.server.ApplicationPropertiesService;
-import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,20 +34,15 @@ import com.google.gson.GsonBuilder;
 public class RestResource {
  private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
- private final RepositoryService repositoryService;
- private final ApplicationPropertiesService applicationPropertiesService;
  private final TransactionTemplate transactionTemplate;
- private final ApplicationLinkService applicationLinkService;
- private final PluginSettingsFactory pluginSettingsFactory;
+ private final ChangelogRestService changelogRestService;
+ private final ChangelogRepositoryService changelogRepositoryService;
 
- public RestResource(RepositoryService repositoryService, ApplicationPropertiesService applicationPropertiesService,
-   TransactionTemplate transactionTemplate, ApplicationLinkService applicationLinkService,
-   PluginSettingsFactory pluginSettingsFactory) {
-  this.repositoryService = repositoryService;
-  this.applicationPropertiesService = applicationPropertiesService;
+ public RestResource(TransactionTemplate transactionTemplate, ChangelogRestService changelogRestService,
+   ChangelogRepositoryService changelogRepositoryService) {
   this.transactionTemplate = transactionTemplate;
-  this.applicationLinkService = applicationLinkService;
-  this.pluginSettingsFactory = pluginSettingsFactory;
+  this.changelogRestService = changelogRestService;
+  this.changelogRepositoryService = changelogRepositoryService;
  }
 
  @GET
@@ -76,14 +67,16 @@ public class RestResource {
    @PathParam("repository") String repository) //
    throws ServletException, IOException, ValidationException {
 
-  final Repository repo = getRepository(repositoryService, project, repository);
+  final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
-    applicationPropertiesService, repo) //
+  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(ZERO_COMMIT) //
-    .withToRef(REF_MASTER);
+    .withToRef(REF_MASTER) //
+    .render();
 
-  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
+  List<String> references = changelogRepositoryService.getReferences(repositoryDir);
+  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }
@@ -98,14 +91,16 @@ public class RestResource {
    @PathParam("toRef") String toRef) //
    throws ServletException, IOException, ValidationException {
 
-  final Repository repo = getRepository(repositoryService, project, repository);
+  final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
-    applicationPropertiesService, repo) //
+  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
     .withFromRef(decode(fromRef, UTF_8.name())) //
-    .withToRef(decode(toRef, UTF_8.name()));
+    .withToRef(decode(toRef, UTF_8.name())) //
+    .render();
 
-  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
+  List<String> references = changelogRepositoryService.getReferences(repositoryDir);
+  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }
@@ -120,14 +115,16 @@ public class RestResource {
    @PathParam("toRef") String toRef) //
    throws ServletException, IOException, ValidationException {
 
-  final Repository repo = getRepository(repositoryService, project, repository);
+  final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
-    applicationPropertiesService, repo) //
+  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(fromCommit) //
-    .withToRef(decode(toRef, UTF_8.name()));
+    .withToRef(decode(toRef, UTF_8.name())) //
+    .render();
 
-  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
+  List<String> references = changelogRepositoryService.getReferences(repositoryDir);
+  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }
@@ -142,14 +139,16 @@ public class RestResource {
    @PathParam("toCommit") String toCommit) //
    throws ServletException, IOException, ValidationException {
 
-  final Repository repo = getRepository(repositoryService, project, repository);
+  final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
-    applicationPropertiesService, repo) //
+  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(decode(fromCommit, UTF_8.name())) //
-    .withToCommit(decode(toCommit, UTF_8.name()));
+    .withToCommit(decode(toCommit, UTF_8.name())) //
+    .render();
 
-  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
+  List<String> references = changelogRepositoryService.getReferences(repositoryDir);
+  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }
@@ -164,14 +163,16 @@ public class RestResource {
    @PathParam("toCommit") String toCommit) //
    throws ServletException, IOException, ValidationException {
 
-  final Repository repo = getRepository(repositoryService, project, repository);
+  final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  GitChangelogApi changelogBuilder = getGitChangelogApiBuilder(pluginSettingsFactory, applicationLinkService,
-    applicationPropertiesService, repo) //
+  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
     .withFromRef(fromRef) //
-    .withToCommit(decode(toCommit, UTF_8.name()));
+    .withToCommit(decode(toCommit, UTF_8.name())) //
+    .render();
 
-  ChangelogDTO changelogDto = getChangelog(applicationPropertiesService, repo, changelogBuilder);
+  File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
+  List<String> references = changelogRepositoryService.getReferences(repositoryDir);
+  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }

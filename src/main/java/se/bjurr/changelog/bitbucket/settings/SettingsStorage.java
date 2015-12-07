@@ -1,18 +1,18 @@
-package se.bjurr.changelog.bitbucket.admin.settings;
+package se.bjurr.changelog.bitbucket.settings;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Iterables.find;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.io.Resources.getResource;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.NAME;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.VALUE;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.dateFormat;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.ignoreCommitsIfMessageMatches;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.noIssueName;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.template;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.timeZone;
-import static se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS.untaggedName;
-import static se.bjurr.changelog.bitbucket.admin.settings.ChangelogSettingsBuilder.changelogSettingsBuilder;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.NAME;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.VALUE;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.dateFormat;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.ignoreCommitsIfMessageMatches;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.noIssueName;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.template;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.timeZone;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.untaggedName;
+import static se.bjurr.changelog.bitbucket.settings.ChangelogSettingsBuilder.changelogSettingsBuilder;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_IGNORE_COMMITS_REGEXP;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_NO_ISSUE_NAME;
@@ -22,8 +22,7 @@ import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_UNTAGGE
 import java.io.IOException;
 import java.util.Map;
 
-import se.bjurr.changelog.bitbucket.admin.AdminFormValues;
-import se.bjurr.changelog.bitbucket.admin.AdminFormValues.FIELDS;
+import se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS;
 
 import com.google.common.base.Predicate;
 import com.google.common.io.Resources;
@@ -47,7 +46,7 @@ public class SettingsStorage {
     .build();
  }
 
- static String getValue(AdminFormValues adminFormValues, FIELDS field) {
+ public static String getValue(AdminFormValues adminFormValues, FIELDS field) {
   return find(adminFormValues, withName(field.name())).get(VALUE);
  }
 

@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.admin;
+package se.bjurr.changelog.bitbucket.presentation;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.noContent;
@@ -6,10 +6,10 @@ import static javax.ws.rs.core.Response.ok;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.STORAGE_KEY;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.fromJson;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.getValidatedSettings;
-import static se.bjurr.changelog.bitbucket.admin.settings.SettingsStorage.toJson;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.STORAGE_KEY;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.fromJson;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.getValidatedSettings;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.toJson;
 
 import java.io.IOException;
 
@@ -22,7 +22,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import se.bjurr.changelog.bitbucket.admin.settings.ValidationException;
+import se.bjurr.changelog.bitbucket.settings.AdminFormError;
+import se.bjurr.changelog.bitbucket.settings.AdminFormValues;
+import se.bjurr.changelog.bitbucket.settings.ValidationException;
 
 import com.atlassian.bitbucket.user.SecurityService;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
@@ -90,8 +92,8 @@ public class ConfigResource {
   return fromJson(pluginSettings.get(STORAGE_KEY));
  }
 
- static boolean isAdminAllowed(UserManager userManager, HttpServletRequest request, SecurityService securityService,
-   final PluginSettingsFactory pluginSettingsFactory) throws Exception {
+ public static boolean isAdminAllowed(UserManager userManager, HttpServletRequest request,
+   SecurityService securityService, final PluginSettingsFactory pluginSettingsFactory) throws Exception {
   final UserProfile user = userManager.getRemoteUser(request);
   if (user == null) {
    return false;

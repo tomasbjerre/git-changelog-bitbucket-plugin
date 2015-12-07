@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.admin.settings;
+package se.bjurr.changelog.bitbucket.settings;
 
 public class ValidationException extends Exception {
  private static final long serialVersionUID = 2203598567281456784L;

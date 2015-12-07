@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.rest.dto;
+package se.bjurr.changelog.bitbucket.presentation.dto;
 
 import java.util.List;
 

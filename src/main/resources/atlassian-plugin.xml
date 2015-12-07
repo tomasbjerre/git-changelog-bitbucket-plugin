@@ -36,11 +36,11 @@
         <description>Provides REST resources for Changelog plugin.</description>
     </rest>
 
-    <servlet key="admin-servlet" class="se.bjurr.changelog.bitbucket.admin.AdminServlet">
+    <servlet key="admin-servlet" class="se.bjurr.changelog.bitbucket.presentation.AdminServlet">
         <url-pattern>/changelog/admin</url-pattern>
     </servlet>
 
-     <servlet name="Repository Servlet" key="repositoryservlet" class="se.bjurr.changelog.bitbucket.RepositoryServlet">
+     <servlet name="Repository Servlet" key="repositoryservlet" class="se.bjurr.changelog.bitbucket.presentation.RepositoryServlet">
         <url-pattern>/repository/*</url-pattern>
     </servlet>
 
@@ -49,5 +49,8 @@
         <param name="iconClass">aui-icon icon-source</param>
         <link>/plugins/servlet/repository/${repository.project.key}/${repository.slug}</link>
     </web-item>
+
+    <component key="changelogRestService" class="se.bjurr.changelog.bitbucket.application.ChangelogRestService" public="false"/>
+    <component key="changelogRepositoryService" class="se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService" public="false"/>
 
  </atlassian-plugin>

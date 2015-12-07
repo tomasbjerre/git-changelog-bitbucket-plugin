@@ -3,9 +3,20 @@
 Changelog of Git Changelog for Bitbucket Plugin.
 
 ## Next release
+### GitHub [#4](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/4) Refactor and add test cases
+
+[fb552802f4a83bc](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/fb552802f4a83bc) Tomas Bjerre *2015-12-07 19:34:49*
+
+Creating services and moving stuff around
+
+
 ### Other changes
 
-[053e5cf8f953b01](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/053e5cf8f953b01) Tomas Bjerre *2015-12-06 08:01:09*
+[fdcc554d6532248](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/fdcc554d6532248) Tomas Bjerre *2015-12-06 17:06:54*
+
+Adding link to Atlassian Marketplace in readme
+
+[20318a3a986f4c5](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/20318a3a986f4c5) Tomas Bjerre *2015-12-06 08:03:26*
 
 Adding changelog
 

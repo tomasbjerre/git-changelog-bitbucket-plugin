@@ -1,4 +1,4 @@
-package se.bjurr.changelog.bitbucket.admin;
+package se.bjurr.changelog.bitbucket.settings;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
