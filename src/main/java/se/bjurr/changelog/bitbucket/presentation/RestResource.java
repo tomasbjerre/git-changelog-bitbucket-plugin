@@ -20,7 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import se.bjurr.changelog.bitbucket.application.ChangelogRestService;
+import se.bjurr.changelog.bitbucket.application.ChangelogLibService;
 import se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService;
 import se.bjurr.changelog.bitbucket.presentation.dto.ChangelogDTO;
 import se.bjurr.changelog.bitbucket.settings.ValidationException;
@@ -35,13 +35,13 @@ public class RestResource {
  private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
  private final TransactionTemplate transactionTemplate;
- private final ChangelogRestService changelogRestService;
+ private final ChangelogLibService changelogLibService;
  private final ChangelogRepositoryService changelogRepositoryService;
 
- public RestResource(TransactionTemplate transactionTemplate, ChangelogRestService changelogRestService,
+ public RestResource(TransactionTemplate transactionTemplate, ChangelogLibService changelogLibService,
    ChangelogRepositoryService changelogRepositoryService) {
   this.transactionTemplate = transactionTemplate;
-  this.changelogRestService = changelogRestService;
+  this.changelogLibService = changelogLibService;
   this.changelogRepositoryService = changelogRepositoryService;
  }
 
@@ -69,7 +69,7 @@ public class RestResource {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
+  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(ZERO_COMMIT) //
     .withToRef(REF_MASTER) //
     .render();
@@ -93,7 +93,7 @@ public class RestResource {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
+  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromRef(decode(fromRef, UTF_8.name())) //
     .withToRef(decode(toRef, UTF_8.name())) //
     .render();
@@ -117,7 +117,7 @@ public class RestResource {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
+  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(fromCommit) //
     .withToRef(decode(toRef, UTF_8.name())) //
     .render();
@@ -141,7 +141,7 @@ public class RestResource {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
+  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(decode(fromCommit, UTF_8.name())) //
     .withToCommit(decode(toCommit, UTF_8.name())) //
     .render();
@@ -165,7 +165,7 @@ public class RestResource {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
-  String changelog = changelogRestService.getGitChangelogApiBuilder(repo) //
+  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromRef(fromRef) //
     .withToCommit(decode(toCommit, UTF_8.name())) //
     .render();

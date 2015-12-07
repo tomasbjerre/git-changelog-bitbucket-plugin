@@ -50,7 +50,7 @@
         <link>/plugins/servlet/repository/${repository.project.key}/${repository.slug}</link>
     </web-item>
 
-    <component key="changelogRestService" class="se.bjurr.changelog.bitbucket.application.ChangelogRestService" public="false"/>
+    <component key="changelogLibService" class="se.bjurr.changelog.bitbucket.application.ChangelogLibService" public="false"/>
     <component key="changelogRepositoryService" class="se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService" public="false"/>
 
  </atlassian-plugin>

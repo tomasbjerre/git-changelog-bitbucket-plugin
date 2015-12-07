@@ -23,12 +23,12 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 
-public class ChangelogRestService {
+public class ChangelogLibService {
  private final PluginSettingsFactory pluginSettingsFactory;
  private final ApplicationLinkService applicationLinkService;
  private final ApplicationPropertiesService applicationPropertiesService;
 
- public ChangelogRestService(PluginSettingsFactory pluginSettingsFactory, ApplicationLinkService applicationLinkService,
+ public ChangelogLibService(PluginSettingsFactory pluginSettingsFactory, ApplicationLinkService applicationLinkService,
    ApplicationPropertiesService applicationPropertiesService) {
   this.pluginSettingsFactory = pluginSettingsFactory;
   this.applicationLinkService = applicationLinkService;
