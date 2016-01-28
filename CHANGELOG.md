@@ -5,16 +5,24 @@ Changelog of Git Changelog for Bitbucket Plugin.
 ## Next release
 ### GitHub [#4](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/4) Refactor and add test cases
 
-[4146c29e1fe7ef0](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/4146c29e1fe7ef0) Tomas Bjerre *2015-12-07 20:15:08*
+[61038babd877d50](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/61038babd877d50) Tomas Bjerre *2015-12-07 20:30:44*
 
-Adding some test cases
+Adding some test cases #4
 
 [108f10560ac9028](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/108f10560ac9028) Tomas Bjerre *2015-12-07 19:36:13*
 
-Creating services and moving stuff around
+Creating services and moving stuff around #4
 
 
 ### Other changes
+
+[cabe56cbee25a78](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/cabe56cbee25a78) Tomas Bjerre *2016-01-30 17:39:38*
+
+Using lib 1.22
+
+[f3a7fb575b506c5](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/f3a7fb575b506c5) Tomas Bjerre *2015-12-15 05:37:35*
+
+Correcting link to Marketplace
 
 [fdcc554d6532248](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/fdcc554d6532248) Tomas Bjerre *2015-12-06 17:06:54*
 
@@ -39,5 +47,9 @@ Refactored and added test
 [5356c3b3531a221](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/5356c3b3531a221) Tomas Bjerre *2015-12-05 15:07:45*
 
 Adding extended variables
+
+[1326f9f1f021410](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/1326f9f1f021410) Tomas Bjerre *2015-12-05 14:10:27*
+
+Initial commit
 
 

@@ -90,7 +90,7 @@
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
             <artifactId>git-changelog-lib</artifactId>
-            <version>1.17</version>
+            <version>1.23</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -193,7 +193,7 @@
             <plugin>
                 <groupId>se.bjurr.gitchangelog</groupId>
                 <artifactId>git-changelog-maven-plugin</artifactId>
-                <version>1.9</version>
+                <version>1.11</version>
                 <executions>
                     <execution>
                         <id>GenerateGitChangelog</id>
