@@ -14,11 +14,18 @@ Adding some test cases #4
 Creating services and moving stuff around #4
 
 
+### GitHub [#5](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/5) Wrong date of some commits
+
+[3508d30a60724af](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/3508d30a60724af) Tomas Bjerre *2016-02-09 19:43:46*
+
+Added variables: messageTitle, messageBody, messageItems #5
+
+
 ### Other changes
 
-[cabe56cbee25a78](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/cabe56cbee25a78) Tomas Bjerre *2016-01-30 17:39:38*
+[5c56b2c9481a7fc](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/5c56b2c9481a7fc) Tomas Bjerre *2016-01-31 11:24:28*
 
-Using lib 1.22
+Using lib 1.23
 
 [f3a7fb575b506c5](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/f3a7fb575b506c5) Tomas Bjerre *2015-12-15 05:37:35*
 
