@@ -1,6 +1,6 @@
-# Git Changelog for Bitbucket Plugin changelog
+# Git Changelog Bitbucket plugin changelog
 
-Changelog of Git Changelog for Bitbucket Plugin.
+Changelog of Git Changelog Bitbucket plugin.
 
 {{#tags}}
 ## {{name}}
@@ -18,9 +18,13 @@ Changelog of Git Changelog for Bitbucket Plugin.
   {{/hasIssue}}
 
   {{#commits}}
-[{{hash}}](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/{{hash}}) {{authorName}} *{{commitTime}}*
+**{{{messageTitle}}}**
 
-{{{message}}}
+{{#messageBodyItems}}
+ * {{.}} 
+{{/messageBodyItems}}
+
+[{{hash}}](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/{{hash}}) {{authorName}} *{{commitTime}}*
 
   {{/commits}}
 
