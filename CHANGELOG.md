@@ -2,7 +2,16 @@
 
 Changelog of Git Changelog Bitbucket plugin.
 
-## Next release
+## 1.2
+### GitHub [#6](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/6) Hangs for large repos
+
+**Significant performance improvements #6**
+
+ * Using lib 1.27. 
+
+[d182238e306a860](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/d182238e306a860) Tomas Bjerre *2016-02-13 09:27:02*
+
+
 ### Other changes
 
 **Git changelog lib 1.25**
