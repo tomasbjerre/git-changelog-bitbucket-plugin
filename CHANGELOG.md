@@ -8,7 +8,7 @@ Changelog of Git Changelog Bitbucket plugin.
 **Git changelog lib 1.25**
 
 
-[a8283be98752e55](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/a8283be98752e55) Tomas Bjerre *2016-02-10 18:45:50*
+[b0dcca6b807048d](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/b0dcca6b807048d) Tomas Bjerre *2016-02-10 18:46:58*
 
 
 ## 1.1
