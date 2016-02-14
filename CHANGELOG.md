@@ -3,13 +3,13 @@
 Changelog of Git Changelog Bitbucket plugin.
 
 ## Next release
-### Other changes
+### GitHub [#1](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/1) Support Jira integration
 
-**Linking Jira:s**
+**Linking Jira:s #1**
 
  * Also Correcting reference listing on changelog page. 
 
-[143f2b32a69a8d0](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/143f2b32a69a8d0) Tomas Bjerre *2016-02-14 18:53:05*
+[955f59691e177a6](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/955f59691e177a6) Tomas Bjerre *2016-02-14 19:16:24*
 
 
 ## 1.3
