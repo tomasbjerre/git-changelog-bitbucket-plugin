@@ -2,6 +2,15 @@
 
 Changelog of Git Changelog Bitbucket plugin.
 
+## Next release
+### Other changes
+
+**Updating CHANGELOG.md**
+
+
+[f10e97e44d4476c](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/f10e97e44d4476c) Tomas Bjerre *2016-02-13 17:23:25*
+
+
 ## 1.2
 ### GitHub [#6](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/6) Hangs for large repos
 

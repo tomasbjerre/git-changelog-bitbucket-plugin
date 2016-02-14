@@ -23,9 +23,14 @@
 
   function getEndpoint(from,to) {
    var endpoint = config_resource;
+   
    endpoint = endpoint + "/" + $("#changelog-project").val();
    endpoint = endpoint + "/" + $("#changelog-repository").val();
 
+   if (!from && !to) {
+    return endpoint;
+   }
+   
    if (from === '0000000000000000000000000000000000000000') {
     endpoint = endpoint + "/fromcommit/" + from;
    } else {
@@ -94,9 +99,10 @@
    hashChanged();
   });
   
-  if (window.location.hash.length <= 1) {
-   getChangelog('0000000000000000000000000000000000000000','master');
+  if (window.location.hash.length > 0) {
+   hashChanged();
+  } else {
+   getChangelog(null,null);
   }
-  hashChanged();
  });
 })(AJS.$ || jQuery);

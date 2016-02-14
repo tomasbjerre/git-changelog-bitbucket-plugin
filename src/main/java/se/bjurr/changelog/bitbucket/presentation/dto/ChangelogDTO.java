@@ -1,6 +1,10 @@
 package se.bjurr.changelog.bitbucket.presentation.dto;
 
+import static com.google.common.base.Optional.fromNullable;
+
 import java.util.List;
+
+import com.google.common.base.Optional;
 
 public class ChangelogDTO {
  private final List<String> references;
@@ -11,11 +15,16 @@ public class ChangelogDTO {
   this.changelog = changelog;
  }
 
+ public ChangelogDTO(List<String> references) {
+  this.references = references;
+  this.changelog = null;
+ }
+
  public List<String> getReferences() {
   return references;
  }
 
- public String getChangelog() {
-  return changelog;
+ public Optional<String> getChangelog() {
+  return fromNullable(changelog);
  }
 }

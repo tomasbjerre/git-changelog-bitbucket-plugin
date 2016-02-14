@@ -6,8 +6,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.Response.ok;
 import static javax.ws.rs.core.Response.status;
-import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.REF_MASTER;
-import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.ZERO_COMMIT;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,21 +60,15 @@ public class RestResource {
  @GET
  @Produces(APPLICATION_JSON)
  @Path("/{project}/{repository}")
- public Response getFromZeroToMaster(//
+ public Response getRefs(//
    @PathParam("project") String project, //
    @PathParam("repository") String repository) //
    throws ServletException, IOException, ValidationException {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
-
-  String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
-    .withFromCommit(ZERO_COMMIT) //
-    .withToRef(REF_MASTER) //
-    .render();
-
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
   List<String> references = changelogRepositoryService.getReferences(repositoryDir);
-  ChangelogDTO changelogDto = new ChangelogDTO(changelog, references);
+  ChangelogDTO changelogDto = new ChangelogDTO(references);
 
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }

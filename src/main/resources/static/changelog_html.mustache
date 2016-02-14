@@ -22,9 +22,12 @@ Changelog of {{projectName}}.
 
    {{#commits}}
 <a href="{{bitbucketUrl}}/bitbucket/projects/{{projectKey}}/repos/{{repositorySlug}}/commits/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
-<p>
-{{{message}}}
-</p>
+<h3>{{{messageTitle}}}</h3>
+<ul>
+{{#messageBodyItems}}
+ <li> {{.}} </li> 
+{{/messageBodyItems}}
+</ul>
 
 
   {{/commits}}
