@@ -57,8 +57,8 @@
      changelogRaw = data.changelog;
      $("#changelog-content").html(changelogRaw);
 
-     $("#changelog-from branches").remove();
-     $("#changelog-from").append('<li><a data-branch="0000000000000000000000000000000000000000" href="javascript:void(0);">First commit</a></li>');
+     $("#changelog-from .branches").empty();
+     $("#changelog-from .branches").append('<li><a data-branch="0000000000000000000000000000000000000000" href="javascript:void(0);">First commit</a></li>');
      for (var i = 0; i < data.references.length; i++) {
       $("#changelog-from").append('<li><a data-branch="'+data.references[i]+'" href="javascript:void(0);">'+data.references[i]+'</a></li>');
      }
@@ -66,9 +66,9 @@
       setHash('from',$(this).data('branch'));
      });
 
-     $("#changelog-to branches").remove();
+     $("#changelog-to .branches").empty();
      for (var i = 0; i < data.references.length; i++) {
-      $("#changelog-to").append('<li><a data-branch="'+data.references[i]+'" href="javascript:void(0);">'+data.references[i]+'</a></li>');
+      $("#changelog-to .branches").append('<li><a data-branch="'+data.references[i]+'" href="javascript:void(0);">'+data.references[i]+'</a></li>');
      }
      $("#changelog-to a").click(function() {
       setHash('to',$(this).data('branch'));

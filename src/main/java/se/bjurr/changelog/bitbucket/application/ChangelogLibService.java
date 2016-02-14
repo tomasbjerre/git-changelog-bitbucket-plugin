@@ -14,6 +14,7 @@ import se.bjurr.changelog.bitbucket.settings.ChangelogSettings;
 import se.bjurr.changelog.bitbucket.settings.ValidationException;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
+import com.atlassian.applinks.api.ApplicationLink;
 import com.atlassian.applinks.api.ApplicationLinkService;
 import com.atlassian.applinks.api.application.bitbucket.BitbucketApplicationType;
 import com.atlassian.applinks.api.application.jira.JiraApplicationType;
@@ -24,6 +25,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 
 public class ChangelogLibService {
+ private static final String JIRA_URL = "jiraUrl";
  private final PluginSettingsFactory pluginSettingsFactory;
  private final ApplicationLinkService applicationLinkService;
  private final ApplicationPropertiesService applicationPropertiesService;
@@ -41,9 +43,12 @@ public class ChangelogLibService {
     .put("repositorySlug", repo.getSlug()) //
     .put("projectName", repo.getProject().getName()) //
     .put("projectKey", repo.getProject().getKey());
-  if (applicationLinkService.getPrimaryApplicationLink(JiraApplicationType.class) != null) {
+  ApplicationLink jiraApplicationLink = applicationLinkService.getPrimaryApplicationLink(JiraApplicationType.class);
+  String jiraUrlString = null;
+  if (jiraApplicationLink != null) {
+   jiraUrlString = jiraApplicationLink.getDisplayUrl().toString();
    builder //
-     .put("jiraUrl", applicationLinkService.getPrimaryApplicationLink(JiraApplicationType.class));
+     .put(JIRA_URL, jiraUrlString);
   }
   if (applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class) != null) {
    builder //
@@ -58,6 +63,7 @@ public class ChangelogLibService {
     .withExtendedVariables(extendedVariables) //
     .withDateFormat(settings.getDateFormat()) //
     .withJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN) //
+    .withJiraServer(jiraUrlString) //
     .withIgnoreCommitsWithMesssage(settings.getIgnoreCommitsIfMessageMatches()) //
     .withNoIssueName(settings.getNoIssueName()) //
     .withTemplateContent(settings.getTemplate()) //

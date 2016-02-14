@@ -49,6 +49,7 @@
             <div class="error noIssueName"></div>
           </fieldset>
         </div>
+
         <div>
           <fieldset>
             <legend>Template</legend>

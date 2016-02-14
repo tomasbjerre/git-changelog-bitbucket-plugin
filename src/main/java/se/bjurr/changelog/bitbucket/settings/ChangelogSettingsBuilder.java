@@ -73,5 +73,4 @@ public class ChangelogSettingsBuilder {
   this.template = template;
   return this;
  }
-
 }

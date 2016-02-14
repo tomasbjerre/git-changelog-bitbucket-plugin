@@ -3,6 +3,16 @@
 Changelog of Git Changelog Bitbucket plugin.
 
 ## Next release
+### Other changes
+
+**Linking Jira:s**
+
+ * Also Correcting reference listing on changelog page. 
+
+[143f2b32a69a8d0](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/143f2b32a69a8d0) Tomas Bjerre *2016-02-14 18:53:05*
+
+
+## 1.3
 ### GitHub [#6](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/6) Hangs for large repos
 
 **Updating changelog only when user selects from, and to, branches #6**
@@ -17,7 +27,7 @@ Changelog of Git Changelog Bitbucket plugin.
 
  * And other GUI improvements. 
 
-[9c1d335b11bb2ae](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/9c1d335b11bb2ae) Tomas Bjerre *2016-02-14 08:30:06*
+[4824da64acfcece](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/4824da64acfcece) Tomas Bjerre *2016-02-14 08:30:46*
 
 **Updating CHANGELOG.md**
 
