@@ -11,19 +11,33 @@
  <body>
   <header class="aui-page-header">
    <div class="aui-page-header-inner">
-    <div class="aui-page-header-actions">
+    <div class="aui-page-header-main">
+      <h1>Changelog</h1>
+    </div>
 
+    <div class="aui-page-header-actions">
      <input type="hidden" id="changelog-project" value="$repository.project.key"/>
      <input type="hidden" id="changelog-repository" value="$repository.slug"/>
 
-     <select class="select" id="changelog-from" name="changelog-from">
-      <option value="0000000000000000000000000000000000000000">First commit</option>
-     </select>
+     <a href="#changelog-from" aria-owns="changelog-from" aria-haspopup="true" class="aui-button aui-style-default aui-dropdown2-trigger">From branch</a>
+     <div id="changelog-from" class="aui-style-default aui-dropdown2">
+         <ul class="aui-list-truncate branches">
+             <li><a href="#">Menu item</a></li>
+         </ul>
+     </div>
 
-     <select class="select" id="changelog-to" name="changelog-to">
-      <option value="master">Master</option>
-     </select>
+     <a href="#changelog-to" aria-owns="changelog-to" aria-haspopup="true" class="aui-button aui-style-default aui-dropdown2-trigger">To branch</a>
+     <div id="changelog-to" class="aui-style-default aui-dropdown2">
+         <ul class="aui-list-truncate branches">
+             <li><a href="#">Menu item</a></li>
+         </ul>
+     </div>
+     
+     <button class="aui-button git-changelog-window">Window</button>
 
+     <p id="git-changelog-plugin-status"></p>
+     <div class="button-spinner git-changelog-spinner"></div>
+     
     </div>
    </div>
   </header>

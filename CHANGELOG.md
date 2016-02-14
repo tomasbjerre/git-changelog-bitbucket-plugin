@@ -3,7 +3,21 @@
 Changelog of Git Changelog Bitbucket plugin.
 
 ## Next release
+### GitHub [#6](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/6) Hangs for large repos
+
+**Updating changelog only when user selects from, and to, branches #6**
+
+
+[96335908f986c65](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/96335908f986c65) Tomas Bjerre *2016-02-14 06:32:06*
+
+
 ### Other changes
+
+**Adding button to open changelog in new window**
+
+ * And other GUI improvements. 
+
+[9c1d335b11bb2ae](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/9c1d335b11bb2ae) Tomas Bjerre *2016-02-14 08:30:06*
 
 **Updating CHANGELOG.md**
 
