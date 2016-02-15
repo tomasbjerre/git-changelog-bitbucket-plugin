@@ -2,14 +2,14 @@
 
 Changelog of Git Changelog Bitbucket plugin.
 
-## Next release
+## 1.5
 ### GitHub [#13](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/13) Error on creating changelog
 
 **Lib 1.30, supporting multiple tags per commit #13**
 
  * Also encoding slashes as \_slash\_ in REST-api. 
 
-[eca3ba6c901e69a](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/eca3ba6c901e69a) Tomas Bjerre *2016-02-15 19:38:12*
+[528e021138be70f](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/528e021138be70f) Tomas Bjerre *2016-02-15 19:39:54*
 
 
 ### Other changes
