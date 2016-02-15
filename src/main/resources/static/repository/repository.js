@@ -19,6 +19,10 @@
    return $("#changelog-to").val();
   }
 
+  function encodeForUrl(input) {
+   return input.replace(/\//g,"_slash_");
+  }
+
   function getEndpoint(from,to) {
    var endpoint = config_resource;
    
@@ -32,10 +36,10 @@
    if (from === '0000000000000000000000000000000000000000') {
     endpoint = endpoint + "/fromcommit/" + from;
    } else {
-    endpoint = endpoint + "/fromref/" + from;
+    endpoint = endpoint + "/fromref/" + encodeForUrl(from);
    }
 
-   endpoint = endpoint + "/toref/" + to;
+   endpoint = endpoint + "/toref/" + encodeForUrl(to);
 
    return endpoint;
   }
@@ -60,7 +64,7 @@
      $("#changelog-from .branches").empty();
      $("#changelog-from .branches").append('<li><a data-branch="0000000000000000000000000000000000000000" href="javascript:void(0);">First commit</a></li>');
      for (var i = 0; i < data.references.length; i++) {
-      $("#changelog-from").append('<li><a data-branch="'+data.references[i]+'" href="javascript:void(0);">'+data.references[i]+'</a></li>');
+      $("#changelog-from .branches").append('<li><a data-branch="'+data.references[i]+'" href="javascript:void(0);">'+data.references[i]+'</a></li>');
      }
      $("#changelog-from a").click(function() {
       setHash('from',$(this).data('branch'));
@@ -91,17 +95,25 @@
   }
   
   function setHash(withParam,withValue) {
+   var hash = "?";
+
    var from = getParam('from');
    if (withParam == 'from') {
+    hash += "from="+withValue;
     from = withValue;
+   } else if (from) {
+    hash += "&from="+from;
    }
 
    var to = getParam('to');
    if (withParam == 'to') {
+    hash += "&to="+withValue;
     to = withValue;
+   } else if (to) {
+    hash += "&to="+to;
    }
 
-   window.location.hash = "?from="+from+"&to="+to;
+   window.location.hash = hash;
    getChangelog(from,to);
   }
 

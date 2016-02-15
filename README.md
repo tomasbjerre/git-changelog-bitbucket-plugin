@@ -20,6 +20,8 @@ The plugin exposes the changelog as a REST API, available at */bitbucket/rest/ch
 /{project}/{repository}/fromcommit/{fromCommit}/tocommit/{toCommit}
 ```
 
+If you have slash `/` in your branch names, they should be replaced with `_slash_`. Because Tomcat by default does not allow slashes encoded as [%2F](https://en.wikipedia.org/wiki/Directory_traversal_attack).
+
 ## Variables
 The changelog is available in the context of the template. These variables are documented in [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib).
 

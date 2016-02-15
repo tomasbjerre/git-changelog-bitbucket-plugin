@@ -1,17 +1,15 @@
 package se.bjurr.changelog.bitbucket.presentation;
 
 import static com.google.common.base.Charsets.UTF_8;
-import static java.net.URLDecoder.decode;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.Response.ok;
 import static javax.ws.rs.core.Response.status;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -21,7 +19,6 @@ import javax.ws.rs.core.Response;
 import se.bjurr.changelog.bitbucket.application.ChangelogLibService;
 import se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService;
 import se.bjurr.changelog.bitbucket.presentation.dto.ChangelogDTO;
-import se.bjurr.changelog.bitbucket.settings.ValidationException;
 
 import com.atlassian.bitbucket.repository.Repository;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
@@ -63,7 +60,7 @@ public class RestResource {
  public Response getRefs(//
    @PathParam("project") String project, //
    @PathParam("repository") String repository) //
-   throws ServletException, IOException, ValidationException {
+   throws Exception {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
@@ -81,13 +78,13 @@ public class RestResource {
    @PathParam("repository") String repository,//
    @PathParam("fromRef") String fromRef,//
    @PathParam("toRef") String toRef) //
-   throws ServletException, IOException, ValidationException {
+   throws Exception {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
   String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
-    .withFromRef(decode(fromRef, UTF_8.name())) //
-    .withToRef(decode(toRef, UTF_8.name())) //
+    .withFromRef(decode(fromRef)) //
+    .withToRef(decode(toRef)) //
     .render();
 
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
@@ -105,13 +102,13 @@ public class RestResource {
    @PathParam("repository") String repository,//
    @PathParam("fromCommit") String fromCommit,//
    @PathParam("toRef") String toRef) //
-   throws ServletException, IOException, ValidationException {
+   throws Exception {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
   String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
     .withFromCommit(fromCommit) //
-    .withToRef(decode(toRef, UTF_8.name())) //
+    .withToRef(decode(toRef)) //
     .render();
 
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
@@ -129,13 +126,13 @@ public class RestResource {
    @PathParam("repository") String repository,//
    @PathParam("fromCommit") String fromCommit, //
    @PathParam("toCommit") String toCommit) //
-   throws ServletException, IOException, ValidationException {
+   throws Exception {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
   String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
-    .withFromCommit(decode(fromCommit, UTF_8.name())) //
-    .withToCommit(decode(toCommit, UTF_8.name())) //
+    .withFromCommit(fromCommit) //
+    .withToCommit(toCommit) //
     .render();
 
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
@@ -153,13 +150,13 @@ public class RestResource {
    @PathParam("repository") String repository,//
    @PathParam("fromRef") String fromRef, //
    @PathParam("toCommit") String toCommit) //
-   throws ServletException, IOException, ValidationException {
+   throws Exception {
 
   final Repository repo = changelogRepositoryService.getRepository(project, repository);
 
   String changelog = changelogLibService.getGitChangelogApiBuilder(repo) //
-    .withFromRef(fromRef) //
-    .withToCommit(decode(toCommit, UTF_8.name())) //
+    .withFromRef(decode(fromRef)) //
+    .withToCommit(toCommit) //
     .render();
 
   File repositoryDir = changelogRepositoryService.getRepositoryDir(repo);
@@ -169,4 +166,8 @@ public class RestResource {
   return ok(transactionTemplate.execute(() -> gson.toJson(changelogDto))).build();
  }
 
+ private String decode(String ref) throws Exception {
+  ref = ref.replaceAll("_slash_", "/");
+  return URLDecoder.decode(ref, UTF_8.name());
+ }
 }
