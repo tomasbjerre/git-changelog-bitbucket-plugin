@@ -11,6 +11,7 @@ public class ChangelogSettings {
  private final String ignoreCommitsIfMessageMatches;
  private final String noIssueName;
  private final String untaggedName;
+ private final boolean lookupJiraTitles;
 
  public ChangelogSettings(ChangelogSettingsBuilder builder) throws ValidationException {
   this.dateFormat = checkNotNullOrEmpty(builder.getDateFormat(), "dateFormat");
@@ -20,6 +21,7 @@ public class ChangelogSettings {
     "ignoreCommitsIfMessageMatches");
   this.noIssueName = checkNotNullOrEmpty(builder.getNoIssueName(), "noIssueName");
   this.untaggedName = checkNotNullOrEmpty(builder.getUntaggedName(), "untaggedName");
+  this.lookupJiraTitles = builder.getLookupJiraTitles();
  }
 
  private String checkIsRegexp(String value, String field) throws ValidationException {
@@ -61,5 +63,9 @@ public class ChangelogSettings {
 
  public String getUntaggedName() {
   return untaggedName;
+ }
+
+ public boolean getLookupJiraTitles() {
+  return lookupJiraTitles;
  }
 }

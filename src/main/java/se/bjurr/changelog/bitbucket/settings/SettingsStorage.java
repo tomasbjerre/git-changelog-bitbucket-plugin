@@ -2,12 +2,14 @@ package se.bjurr.changelog.bitbucket.settings;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Iterables.find;
+import static com.google.common.collect.Iterables.tryFind;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.io.Resources.getResource;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.NAME;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.VALUE;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.dateFormat;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.ignoreCommitsIfMessageMatches;
+import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.lookupJiraTitles;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.noIssueName;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.template;
 import static se.bjurr.changelog.bitbucket.settings.AdminFormValues.FIELDS.timeZone;
@@ -43,11 +45,16 @@ public class SettingsStorage {
     .withUntaggedName(getValue(adminFormValues, untaggedName)) //
     .withNoIssueName(getValue(adminFormValues, noIssueName)) //
     .withTemplate(getValue(adminFormValues, template)) //
+    .withLookupJiraTitles(hasValue(adminFormValues, lookupJiraTitles)) //
     .build();
  }
 
  public static String getValue(AdminFormValues adminFormValues, FIELDS field) {
   return find(adminFormValues, withName(field.name())).get(VALUE);
+ }
+
+ public static boolean hasValue(AdminFormValues adminFormValues, FIELDS field) {
+  return tryFind(adminFormValues, withName(field.name())).isPresent();
  }
 
  private static Predicate<Map<String, String>> withName(final String name) {

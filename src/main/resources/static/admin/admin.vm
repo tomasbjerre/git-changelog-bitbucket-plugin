@@ -43,9 +43,15 @@
           <fieldset>
             <legend>Issues</legend>
             <div class="description">
+             Titles of Jiras can be included in the changelog. It may take a very long time to generate a changelog if alot of titles needs to be fetched.
+            </div>
+            <input type="checkbox" name="lookupJiraTitles" value="TRUE" id="lookupJiraTitles">
+            <label for="lookupJiraTitles">Lookup Jira Titles</label><br>
+            
+            <div class="description">
              Commits do not contain any issue will be grouped in this "virtual" issue.
             </div>
-            <label>Name <input type="text" name="noIssueName"></label>
+            <label>No Issue Name <input type="text" name="noIssueName"></label>
             <div class="error noIssueName"></div>
           </fieldset>
         </div>

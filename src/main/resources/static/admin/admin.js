@@ -37,6 +37,7 @@
      $('input[type="text"][name="'+field_map.name+'"]').attr('value', field_map.value);
      $('textarea[name="'+field_map.name+'"]').text(field_map.value);
      $('input[type="hidden"][name="'+field_map.name+'"]').attr('value', field_map.value);
+     $('input[type="checkbox"][name="'+field_map.name+'"][value="'+safe_value+'"]').attr('checked','checked');
     });
    });
   }

@@ -13,6 +13,7 @@ import java.util.Map;
 import se.bjurr.changelog.bitbucket.settings.ChangelogSettings;
 import se.bjurr.changelog.bitbucket.settings.ValidationException;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
+import se.bjurr.gitchangelog.internal.integrations.jira.JiraClientFactory;
 
 import com.atlassian.applinks.api.ApplicationLink;
 import com.atlassian.applinks.api.ApplicationLinkService;
@@ -29,16 +30,18 @@ public class ChangelogLibService {
  private final PluginSettingsFactory pluginSettingsFactory;
  private final ApplicationLinkService applicationLinkService;
  private final ApplicationPropertiesService applicationPropertiesService;
+ private final JiraClientService jiraClientService;
 
  public ChangelogLibService(PluginSettingsFactory pluginSettingsFactory, ApplicationLinkService applicationLinkService,
-   ApplicationPropertiesService applicationPropertiesService) {
+   ApplicationPropertiesService applicationPropertiesService, JiraClientService jiraClientService) {
   this.pluginSettingsFactory = pluginSettingsFactory;
   this.applicationLinkService = applicationLinkService;
   this.applicationPropertiesService = applicationPropertiesService;
+  this.jiraClientService = jiraClientService;
  }
 
  public GitChangelogApi getGitChangelogApiBuilder(Repository repo) throws IOException, ValidationException {
-  Builder<String, Object> builder = ImmutableMap.<String, Object> builder() //
+  Builder<String, Object> extendedVariablesBuilder = ImmutableMap.<String, Object> builder() //
     .put("repositoryName", repo.getName()) //
     .put("repositorySlug", repo.getSlug()) //
     .put("projectName", repo.getProject().getName()) //
@@ -47,17 +50,18 @@ public class ChangelogLibService {
   String jiraUrlString = null;
   if (jiraApplicationLink != null) {
    jiraUrlString = jiraApplicationLink.getDisplayUrl().toString();
-   builder //
+   extendedVariablesBuilder //
      .put(JIRA_URL, jiraUrlString);
   }
   if (applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class) != null) {
-   builder //
+   extendedVariablesBuilder //
      .put("bitbucketUrl", applicationLinkService.getPrimaryApplicationLink(BitbucketApplicationType.class));
   }
   ChangelogSettings settings = getValidatedSettings(fromJson(pluginSettingsFactory.createGlobalSettings().get(
     STORAGE_KEY)));
   File repositoryDir = applicationPropertiesService.getRepositoryDir(repo);
-  Map<String, Object> extendedVariables = builder.build();
+  Map<String, Object> extendedVariables = extendedVariablesBuilder.build();
+  JiraClientFactory.setJiraClient(jiraClientService.getJiraClient(settings.getLookupJiraTitles()));
   return gitChangelogApiBuilder() //
     .withFromRepo(repositoryDir.getAbsolutePath()) //
     .withExtendedVariables(extendedVariables) //

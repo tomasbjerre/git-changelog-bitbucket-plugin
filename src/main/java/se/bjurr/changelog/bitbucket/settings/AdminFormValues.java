@@ -20,6 +20,7 @@ public final class AdminFormValues extends ArrayList<Map<String, String>> {
   ignoreCommitsIfMessageMatches, //
   untaggedName, //
   noIssueName, //
-  template
+  template, //
+  lookupJiraTitles
  }
 }

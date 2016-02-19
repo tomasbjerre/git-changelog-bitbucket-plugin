@@ -52,5 +52,6 @@
 
     <component key="changelogLibService" class="se.bjurr.changelog.bitbucket.application.ChangelogLibService" public="false"/>
     <component key="changelogRepositoryService" class="se.bjurr.changelog.bitbucket.application.ChangelogRepositoryService" public="false"/>
+    <component key="jiraClientService" class="se.bjurr.changelog.bitbucket.application.JiraClientService" public="false"/>
 
  </atlassian-plugin>

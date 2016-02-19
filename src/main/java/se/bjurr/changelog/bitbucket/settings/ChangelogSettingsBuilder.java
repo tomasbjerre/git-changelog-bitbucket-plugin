@@ -1,6 +1,5 @@
 package se.bjurr.changelog.bitbucket.settings;
 
-
 public class ChangelogSettingsBuilder {
  private String dateFormat;
  private String timeZone;
@@ -8,6 +7,7 @@ public class ChangelogSettingsBuilder {
  private String ignoreCommitsIfMessageMatches;
  private String noIssueName;
  private String untaggedName;
+ private boolean lookupJiraTitles;
 
  private ChangelogSettingsBuilder() {
  }
@@ -71,6 +71,15 @@ public class ChangelogSettingsBuilder {
 
  public ChangelogSettingsBuilder withTemplate(String template) {
   this.template = template;
+  return this;
+ }
+
+ public boolean getLookupJiraTitles() {
+  return lookupJiraTitles;
+ }
+
+ public ChangelogSettingsBuilder withLookupJiraTitles(boolean lookupJiraTitles) {
+  this.lookupJiraTitles = lookupJiraTitles;
   return this;
  }
 }
