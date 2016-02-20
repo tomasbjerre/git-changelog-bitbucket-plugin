@@ -2,7 +2,7 @@
 
 Changelog of Git Changelog Bitbucket plugin.
 
-## Next release
+## 1.6
 ### GitHub [#12](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/issues/12) Optionally lookup jira titles
 
 **Using Bitbuckets Jira authenticated HTTP Client #12 #14 #15**
@@ -10,7 +10,7 @@ Changelog of Git Changelog Bitbucket plugin.
  * Was not authenticating. 
  * Also adding checkbox to optionally fetch titles. This solves #14 where the plugin most likely got stuck on waiting for Jira. 
 
-[160e86a024f9ed0](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/160e86a024f9ed0) Tomas Bjerre *2016-02-19 21:22:10*
+[7daad7759006fc5](https://github.com/tomasbjerre/git-changelog-bitbucket-plugin/commit/7daad7759006fc5) Tomas Bjerre *2016-02-19 21:24:34*
 
 
 ### Other changes

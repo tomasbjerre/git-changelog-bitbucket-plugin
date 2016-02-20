@@ -56,7 +56,7 @@ public class JiraClientService {
        .createAuthenticatedRequestFactory() //
        .createRequest(GET, endpoint) //
        .execute();
-     return of(toJiraIssue(matched, of(json)));
+     return of(toJiraIssue(matched, json));
     } catch (Exception e) {
      LOG.log(SEVERE, "Could not read from:\n" + endpoint, e);
     }
