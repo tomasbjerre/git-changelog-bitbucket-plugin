@@ -56,7 +56,7 @@ export MAVEN_OPTS=-Dplugin.resource.directories=`pwd`/src/main/resources
 mvn bitbucket:run
 ```
 
-You can also debug with:
+You can also remote debug on port 5005 with:
 ```
 mvn bitbucket:debug
 ```
