@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>se.bjurr.changelog</groupId>
 	<artifactId>git-changelog-for-bitbucket</artifactId>
-	<version>1.8-SNAPSHOT</version>
+	<version>1.8</version>
 	<organization>
 		<name>Tomas Bjerre</name>
 		<url>http://bjurr.se/</url>
@@ -16,7 +15,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:tomasbjerre/git-changelog-bitbucket-plugin.git</developerConnection>
 		<url>https://github.com/tomasbjerre/git-changelog-bitbucket-plugin</url>
-		<tag>HEAD</tag>
+		<tag>git-changelog-for-bitbucket-1.8</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
