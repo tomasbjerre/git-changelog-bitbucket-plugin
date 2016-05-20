@@ -4,6 +4,16 @@ Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
 ### No issue
+  Ignoring trailing slash in JIRA URL
+  
+  [bc17a136dbfe741](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/bc17a136dbfe741) Tomas Bjerre *2016-05-20 19:17:23*
+
+## 1.8
+### No issue
+  Using lib 1.45
+  
+  [f288eae0f98fd11](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/f288eae0f98fd11) Tomas Bjerre *2016-04-14 16:48:40*
+
   Updating debug info in README.md
   
   [657267ba42bd2df](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/657267ba42bd2df) Tomas Bjerre *2016-02-24 18:17:28*

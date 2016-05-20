@@ -16,17 +16,18 @@ import com.atlassian.applinks.api.application.jira.JiraApplicationType;
 import com.google.common.base.Optional;
 
 public class JiraClientService {
+ private static Logger LOG = Logger.getLogger(JiraClientService.class.getSimpleName());
  private static JiraClient NULL_JIRA_CLIENT = new JiraClient(null) {
-  @Override
-  public void withBasicCredentials(String username, String password) {
-  }
-
   @Override
   public Optional<JiraIssue> getIssue(String matched) {
    return absent();
   }
+
+  @Override
+  public JiraClient withBasicCredentials(String username, String password) {
+   return null;
+  }
  };
- private static Logger LOG = Logger.getLogger(JiraClientService.class.getSimpleName());
  private final ApplicationLinkService applicationLinkService;
 
  public JiraClientService(ApplicationLinkService applicationLinkService) {
@@ -34,18 +35,13 @@ public class JiraClientService {
  }
 
  public JiraClient getJiraClient(boolean lookupJiraTitles) {
-  ApplicationLink primaryApplicationLink = applicationLinkService. //
+  ApplicationLink primaryApplicationLink = this.applicationLinkService. //
     getPrimaryApplicationLink(JiraApplicationType.class);
   if (!lookupJiraTitles || primaryApplicationLink == null) {
    return NULL_JIRA_CLIENT;
   }
   String jiraUrlString = primaryApplicationLink.getDisplayUrl().toString();
   return new JiraClient(jiraUrlString) {
-
-   @Override
-   public void withBasicCredentials(String username, String password) {
-    // Not needed
-   }
 
    @Override
    public Optional<JiraIssue> getIssue(String matched) {
@@ -61,6 +57,11 @@ public class JiraClientService {
      LOG.log(SEVERE, "Could not read from:\n" + endpoint, e);
     }
     return absent();
+   }
+
+   @Override
+   public JiraClient withBasicCredentials(String username, String password) {
+    return null;
    }
   };
  }
