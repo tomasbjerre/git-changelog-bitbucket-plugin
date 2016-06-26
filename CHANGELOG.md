@@ -6,7 +6,7 @@ Changelog of Pull Request Notifier for Bitbucket.
 ### No issue
   Ignoring trailing slash in JIRA URL
   
-  [bc17a136dbfe741](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/bc17a136dbfe741) Tomas Bjerre *2016-05-20 19:17:23*
+  [18f022c69c17707](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/18f022c69c17707) Tomas Bjerre *2016-05-20 19:34:08*
 
 ## 1.8
 ### No issue

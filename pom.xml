@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>se.bjurr.gitchangelog</groupId>
 			<artifactId>git-changelog-lib</artifactId>
-			<version>1.48</version>
+			<version>1.53</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
