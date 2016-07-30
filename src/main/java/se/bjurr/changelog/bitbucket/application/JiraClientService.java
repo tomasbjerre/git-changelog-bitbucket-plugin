@@ -17,7 +17,7 @@ import com.google.common.base.Optional;
 
 public class JiraClientService {
  private static Logger LOG = Logger.getLogger(JiraClientService.class.getSimpleName());
- private static JiraClient NULL_JIRA_CLIENT = new JiraClient(null) {
+ private static JiraClient NULL_JIRA_CLIENT = new JiraClient("") {
   @Override
   public Optional<JiraIssue> getIssue(String matched) {
    return absent();

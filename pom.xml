@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>se.bjurr.gitchangelog</groupId>
 			<artifactId>git-changelog-lib</artifactId>
-			<version>1.53</version>
+			<version>1.54</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -251,7 +251,7 @@ Changelog of Pull Request Notifier for Bitbucket.
 		</resources>
 	</build>
 	<properties>
-		<bitbucket.version>4.0.1</bitbucket.version>
+		<bitbucket.version>4.8.3</bitbucket.version>
 		<bitbucket.data.version>${bitbucket.version}</bitbucket.data.version>
 		<amps.version>6.1.0</amps.version>
 	</properties>
