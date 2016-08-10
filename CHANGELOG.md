@@ -6,6 +6,10 @@ Changelog of Pull Request Notifier for Bitbucket.
 ### GitHub [#21](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/issues/21) new variable containing only name of branch
   Using lib 1.55, adding {{hashFull}} #21
   
+  [86f901bbcf40937](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/86f901bbcf40937) Tomas Bjerre *2016-08-10 14:07:39*
+
+  Using lib 1.55, adding {{hashFull}} #21
+  
   [8482c11fe3262f0](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/8482c11fe3262f0) Tomas Bjerre *2016-08-10 14:07:07*
 
 ## 1.11
