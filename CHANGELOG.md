@@ -2,6 +2,18 @@
 
 Changelog of Pull Request Notifier for Bitbucket.
 
+## Unreleased
+### GitHub [#21](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/issues/21) new variable containing only name of branch
+  Using lib 1.55, adding {{hashFull}} #21
+  
+  [8482c11fe3262f0](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/8482c11fe3262f0) Tomas Bjerre *2016-08-10 14:07:07*
+
+## 1.11
+### GitHub [#20](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/issues/20) Rescope of Target/To branch triggers 2 RESCOPE_TO events
+  Avoiding crash on startup #20
+  
+  [825a1a0f68ebde3](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/825a1a0f68ebde3) Tomas Bjerre *2016-07-30 09:12:17*
+
 ## 1.10
 ### No issue
   Lib 1.53
