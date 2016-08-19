@@ -17,6 +17,7 @@
     <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
     <component-import key="transactionTemplate" interface="com.atlassian.sal.api.transaction.TransactionTemplate" />
     <component-import key="repositoryService" interface="com.atlassian.bitbucket.repository.RepositoryService" />
+    <component-import key="securityService" interface="com.atlassian.bitbucket.user.SecurityService" />
 
     <web-resource name="Admin Web Resources" key="admin-resources"> 
         <dependency>com.atlassian.auiplugin:ajs</dependency> 

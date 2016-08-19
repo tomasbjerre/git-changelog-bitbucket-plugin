@@ -3,6 +3,29 @@
 Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
+### No issue
+  Getting Jira issue name with admin priv
+  
+  [44df043b77fdb7a](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/44df043b77fdb7a) Tomas Bjerre *2016-08-19 18:52:11*
+
+## 1.13
+### No issue
+  Lib 1.56 correcting link to Jira
+  
+  [0c66b38fc31cd7c](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/0c66b38fc31cd7c) Tomas Bjerre *2016-08-11 14:51:40*
+
+  Fixed commit link in changelog_html.mustache
+
+Generated commit link was wrong due to wrong basepath
+Generated commit link was wrong due to usage of shortened commitID instead of full commitID
+  
+  [5aecedb4a3da302](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/5aecedb4a3da302) hoppfrosch *2016-08-11 05:09:49*
+
+  doc
+  
+  [5e38331e92f1e0a](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/5e38331e92f1e0a) Tomas Bjerre *2016-08-10 14:08:52*
+
+## 1.12
 ### GitHub [#21](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/issues/21) new variable containing only name of branch
   Using lib 1.55, adding {{hashFull}} #21
   

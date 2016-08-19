@@ -13,6 +13,9 @@ import se.bjurr.gitchangelog.internal.integrations.jira.JiraIssue;
 import com.atlassian.applinks.api.ApplicationLink;
 import com.atlassian.applinks.api.ApplicationLinkService;
 import com.atlassian.applinks.api.application.jira.JiraApplicationType;
+import com.atlassian.bitbucket.permission.Permission;
+import com.atlassian.bitbucket.user.SecurityService;
+import com.atlassian.bitbucket.util.Operation;
 import com.google.common.base.Optional;
 
 public class JiraClientService {
@@ -29,9 +32,11 @@ public class JiraClientService {
   }
  };
  private final ApplicationLinkService applicationLinkService;
+ private final SecurityService securityService;
 
- public JiraClientService(ApplicationLinkService applicationLinkService) {
+ public JiraClientService(ApplicationLinkService applicationLinkService, SecurityService securityService) {
   this.applicationLinkService = applicationLinkService;
+  this.securityService = securityService;
  }
 
  public JiraClient getJiraClient(boolean lookupJiraTitles) {
@@ -42,16 +47,20 @@ public class JiraClientService {
   }
   String jiraUrlString = primaryApplicationLink.getDisplayUrl().toString();
   return new JiraClient(jiraUrlString) {
-
    @Override
    public Optional<JiraIssue> getIssue(String matched) {
-    String endpoint = null;
+    final String endpoint = getEndpoint(matched);
     try {
-     endpoint = getEndpoint(matched);
-     String json = primaryApplicationLink //
-       .createAuthenticatedRequestFactory() //
-       .createRequest(GET, endpoint) //
-       .execute();
+     String json = JiraClientService.this.securityService.withPermission(Permission.ADMIN, "Invoking Jira").call(
+       new Operation<String, Exception>() {
+        @Override
+        public String perform() throws Exception {
+         return primaryApplicationLink //
+           .createAuthenticatedRequestFactory() //
+           .createRequest(GET, endpoint) //
+           .execute();
+        }
+       });
      return of(toJiraIssue(matched, json));
     } catch (Exception e) {
      LOG.log(SEVERE, "Could not read from:\n" + endpoint, e);
