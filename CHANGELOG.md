@@ -6,7 +6,7 @@ Changelog of Pull Request Notifier for Bitbucket.
 ### No issue
   Getting Jira issue name with admin priv
   
-  [44df043b77fdb7a](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/44df043b77fdb7a) Tomas Bjerre *2016-08-19 18:52:11*
+  [aca6b82b518b786](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/aca6b82b518b786) Tomas Bjerre *2016-08-19 18:52:23*
 
 ## 1.13
 ### No issue
