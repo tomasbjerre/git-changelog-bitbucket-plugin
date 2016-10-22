@@ -4,6 +4,12 @@ Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
 ### No issue
+  Adding merge boolean to commits
+  
+  [2d9cdec045b9fa5](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/2d9cdec045b9fa5) Tomas Bjerre *2016-10-05 18:36:39*
+
+## 1.14
+### No issue
   Getting Jira issue name with admin priv
   
   [aca6b82b518b786](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/aca6b82b518b786) Tomas Bjerre *2016-08-19 18:52:23*
