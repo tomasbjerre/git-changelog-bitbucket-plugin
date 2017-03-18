@@ -4,6 +4,12 @@ Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
 ### No issue
+  Adding annotation to context of tag
+  
+  [c22e11970211d4c](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/c22e11970211d4c) Tomas Bjerre *2016-10-22 09:51:59*
+
+## 1.15
+### No issue
   Adding merge boolean to commits
   
   [2d9cdec045b9fa5](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/2d9cdec045b9fa5) Tomas Bjerre *2016-10-05 18:36:39*
