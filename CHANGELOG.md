@@ -4,6 +4,16 @@ Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
 ### No issue
+  Git Changelog Lib 1.58 -> 1.64
+
+ * Jira issueType and labels
+ * GitHub labels
+ * 10 seconds timeout to GitHub
+  
+  [58fddffa3b84725](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/58fddffa3b84725) Tomas Bjerre *2017-03-18 09:23:24*
+
+## 1.16
+### No issue
   Adding annotation to context of tag
   
   [c22e11970211d4c](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/c22e11970211d4c) Tomas Bjerre *2016-10-22 09:51:59*
