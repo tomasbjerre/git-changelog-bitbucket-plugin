@@ -4,6 +4,12 @@ Changelog of Pull Request Notifier for Bitbucket.
 
 ## Unreleased
 ### No issue
+  Fix Jira labels
+  
+  [646c4f1018f9507](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/646c4f1018f9507) Tomas Bjerre *2017-03-20 18:19:28*
+
+## 1.17
+### No issue
   Git Changelog Lib 1.58 -> 1.64
 
  * Jira issueType and labels
