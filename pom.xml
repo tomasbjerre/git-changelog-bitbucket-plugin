@@ -251,8 +251,9 @@ Changelog of Pull Request Notifier for Bitbucket.
 		</resources>
 	</build>
 	<properties>
-		<bitbucket.version>4.8.3</bitbucket.version>
+		<bitbucket.version>5.0.0</bitbucket.version>
 		<bitbucket.data.version>${bitbucket.version}</bitbucket.data.version>
-		<amps.version>6.1.0</amps.version>
+		<quick.reload.version>2.0.0</quick.reload.version>
+		<amps.version>6.3.0</amps.version>
 	</properties>
 </project>

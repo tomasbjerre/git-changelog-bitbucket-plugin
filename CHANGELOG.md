@@ -2,7 +2,13 @@
 
 Changelog of Pull Request Notifier for Bitbucket.
 
-## Unreleased
+## 1.19
+### No issue
+  tag time added to tag model
+  
+  [4c963217c9e4e39](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/4c963217c9e4e39) Tomas Bjerre *2017-04-14 09:12:27*
+
+## 1.18
 ### No issue
   Fix Jira labels
   
