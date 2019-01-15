@@ -45,7 +45,7 @@ public class JiraClientService {
   if (!lookupJiraTitles || primaryApplicationLink == null) {
    return NULL_JIRA_CLIENT;
   }
-  String jiraUrlString = primaryApplicationLink.getDisplayUrl().toString();
+  String jiraUrlString = primaryApplicationLink.getRpcUrl().toString();
   return new JiraClient(jiraUrlString) {
    @Override
    public Optional<JiraIssue> getIssue(String matched) {
