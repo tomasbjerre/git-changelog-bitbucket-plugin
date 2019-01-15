@@ -1,20 +1,5 @@
 package se.bjurr.changelog.bitbucket.application;
 
-import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.STORAGE_KEY;
-import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.fromJson;
-import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.getValidatedSettings;
-import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
-import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_JIRA_ISSUE_PATTEN;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-
-import se.bjurr.changelog.bitbucket.settings.ChangelogSettings;
-import se.bjurr.changelog.bitbucket.settings.ValidationException;
-import se.bjurr.gitchangelog.api.GitChangelogApi;
-import se.bjurr.gitchangelog.internal.integrations.jira.JiraClientFactory;
-
 import com.atlassian.applinks.api.ApplicationLink;
 import com.atlassian.applinks.api.ApplicationLinkService;
 import com.atlassian.applinks.api.application.bitbucket.BitbucketApplicationType;
@@ -24,6 +9,20 @@ import com.atlassian.bitbucket.server.ApplicationPropertiesService;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
+import se.bjurr.changelog.bitbucket.settings.ChangelogSettings;
+import se.bjurr.changelog.bitbucket.settings.ValidationException;
+import se.bjurr.gitchangelog.api.GitChangelogApi;
+import se.bjurr.gitchangelog.internal.integrations.jira.JiraClientFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.STORAGE_KEY;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.fromJson;
+import static se.bjurr.changelog.bitbucket.settings.SettingsStorage.getValidatedSettings;
+import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
+import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_JIRA_ISSUE_PATTEN;
 
 public class ChangelogLibService {
  private static final String JIRA_URL = "jiraUrl";
@@ -68,7 +67,7 @@ public class ChangelogLibService {
     .withDateFormat(settings.getDateFormat()) //
     .withJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN) //
     .withJiraServer(jiraUrlString) //
-    .withIgnoreCommitsWithMesssage(settings.getIgnoreCommitsIfMessageMatches()) //
+    .withIgnoreCommitsWithMessage(settings.getIgnoreCommitsIfMessageMatches()) //
     .withNoIssueName(settings.getNoIssueName()) //
     .withTemplateContent(settings.getTemplate()) //
     .withTimeZone(settings.getTimeZone()) //

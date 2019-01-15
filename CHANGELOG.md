@@ -2,6 +2,21 @@
 
 Changelog of Pull Request Notifier for Bitbucket.
 
+## Unreleased
+### GitHub [#25](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/issues/25) Enable  configuration in per-repository hook screen
+  fixes #25 JiraClientService uses DisplayUrl instead of RpcUrl
+  
+  [75c016e5c72c66f](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/75c016e5c72c66f) Aerni Mario, IT122 *2019-01-15 14:42:02*
+
+### No issue
+  Update lib to 1.88
+  
+  [38dfac76c2dafa2](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/38dfac76c2dafa2) Tomas Bjerre *2019-01-15 16:53:04*
+
+  Building for 5.0
+  
+  [07eebd11b5824c9](https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket/commit/07eebd11b5824c9) Tomas Bjerre *2017-05-14 07:01:04*
+
 ## 1.19
 ### No issue
   tag time added to tag model
